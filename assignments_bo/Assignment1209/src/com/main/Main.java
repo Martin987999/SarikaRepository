@@ -30,6 +30,27 @@ public class Main {
 		System.out.println("the sum closest to 0: " + res.getKey() + " + " + res.getValue() + " = " + (res.getKey() + res.getValue()));
 	}
 	
+	private static void minPlatformsOptimal() {
+		int res = 0;
+		Arrays.sort(arrival);
+		Arrays.sort(departure);
+		int i = 0;
+		int j = 0;
+		int cur = 0;
+		while(i < arrival.length && j < arrival.length) {
+			if(arrival[i] < departure[j]) {
+				cur ++;
+				i ++;
+				res = Math.max(res, cur);
+			}
+			else {
+				j ++;
+				cur --;
+			}
+		}
+		System.out.println("minimum " + res + " platforms required.");
+	}
+	
 	private static void minPlatforms() {
 		int res = 0;
 		int temp = 0;
@@ -100,9 +121,10 @@ public class Main {
 	}
 	public static void main(String[] args) {
 		input();
-		//sumClosestToZero();
-		//bubbleSort();
-		minPlatforms();
+		sumClosestToZero();
+		bubbleSort();
+		//minPlatforms();
+		minPlatformsOptimal();
 	}
 }
 
